@@ -1,0 +1,15 @@
+{
+  "id": "ed25f2b6-88c7-4490-a0c9-58b6024e0429",
+  "label": "moflow-poc NoFlo runtime",
+  "secret": "feyavixiko",
+  "permissions": {
+    "feyavixiko": [
+      "protocol:component",
+      "protocol:runtime",
+      "protocol:graph",
+      "protocol:network",
+      "component:getsource",
+      "component:setsource"
+    ]
+  }
+}
