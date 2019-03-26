@@ -15,11 +15,11 @@ React 系列：
 
 基于 React 的内容编辑器：
 
-MIT：https://github.com/vigetlabs/colonel-kurtz
+MIT：[https://github.com/vigetlabs/colonel-kurtz](https://github.com/vigetlabs/colonel-kurtz)
 
 纯 JavaScript 版本：
 
-GPLV3： https://github.com/voidlabs/mosaico
+GPLV3： [https://github.com/voidlabs/mosaico](https://github.com/voidlabs/mosaico)
 
 ### 架构设计
 
