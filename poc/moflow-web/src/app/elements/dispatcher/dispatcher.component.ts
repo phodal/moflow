@@ -19,7 +19,7 @@ import { MolistComponent } from '../molist/molist.component';
 export const CONTAINER_DATA = new InjectionToken<{}>('CONTAINER_DATA');
 
 @Component({
-  selector: 'app-dispatcher',
+  selector: 'element-dispatcher',
   templateUrl: './dispatcher.component.html',
   styleUrls: ['./dispatcher.component.scss']
 })
