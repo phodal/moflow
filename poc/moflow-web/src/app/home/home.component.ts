@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { ResizeEvent } from 'angular-resizable-element';
 
 @Component({
   selector: 'app-home',
@@ -20,13 +21,11 @@ export class HomeComponent implements OnInit {
     'Long nineteenth century'
   ];
 
-  dropVerticalLayout(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.timePeriods, event.previousIndex, event.currentIndex);
-  }
-
-  dropBasicItem(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.verticalLayoutItem, event.previousIndex, event.currentIndex);
-  }
+  timePeriods2 = [
+    'Bronze age',
+    'Early modern period',
+    'Long nineteenth century'
+  ];
 
   constructor() { }
 
@@ -34,4 +33,15 @@ export class HomeComponent implements OnInit {
 
   }
 
+  dropVerticalLayout(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.verticalLayoutItem, event.previousIndex, event.currentIndex);
+  }
+
+  dropBasicItem(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.timePeriods, event.previousIndex, event.currentIndex);
+  }
+
+  onResizeEnd(event: ResizeEvent): void {
+    console.log('Element was resized', event);
+  }
 }

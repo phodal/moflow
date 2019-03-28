@@ -35,6 +35,10 @@
   border: 1px dashed #CCCCCC;
 }
 
+mwlResizable {
+  box-sizing: border-box; // required for the enableGhostResize option to work
+}
+
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;

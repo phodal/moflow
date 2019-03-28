@@ -1,9 +1,14 @@
 <div cdkDropList cdkDropListOrientation="vertical" class="vertical-layout"
      (cdkDropListDropped)="dropVerticalLayout($event)">
 
-  <div cdkDrag class="vertical-layout-item">
+  <div cdkDrag class="vertical-layout-item" >
     <div cdkDropList class="example-list" cdkDropListOrientation="horizontal"
-         (cdkDropListDropped)="dropBasicItem($event)">
+         (cdkDropListDropped)="dropBasicItem($event)"
+
+         mwlResizable
+         [enableGhostResize]="true"
+         [resizeEdges]="{bottom: true, right: true, top: true, left: true}"
+         (resizeEnd)="onResizeEnd($event)">
       <div class="example-box" *ngFor="let timePeriod of timePeriods" cdkDrag>{{timePeriod}}</div>
     </div>
   </div>
@@ -11,7 +16,7 @@
   <div cdkDrag class="vertical-layout-item">
     <div cdkDropList class="example-list" cdkDropListOrientation="horizontal"
          (cdkDropListDropped)="dropBasicItem($event)">
-      <div class="example-box" *ngFor="let timePeriod of timePeriods" cdkDrag>{{timePeriod}}</div>
+      <div class="example-box" *ngFor="let timePeriod of timePeriods2" cdkDrag>{{timePeriod}}</div>
     </div>
   </div>
 </div>
