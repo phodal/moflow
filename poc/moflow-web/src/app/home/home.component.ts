@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ResizeEvent } from 'angular-resizable-element';
 
 @Component({
@@ -8,35 +8,44 @@ import { ResizeEvent } from 'angular-resizable-element';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  verticalLayoutItems = [
-    'hello',
-    'second'
-  ];
+  groupsData = [{
+    id: 1,
+    items: [
+      'Bronze age',
+      'Iron age',
+      'Middle ages',
+      'Early modern period',
+      'Long nineteenth century'
+    ]
+  }, {
+    id: 2,
+    items: [
+      'Bronze age',
+      'Early modern period',
+      'Long nineteenth century'
+    ]
+  }];
 
-  timePeriods = [[
-    'Bronze age',
-    'Iron age',
-    'Middle ages',
-    'Early modern period',
-    'Long nineteenth century'
-  ], [
-    'Bronze age',
-    'Early modern period',
-    'Long nineteenth century'
-  ]];
-
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
 
   }
 
   dropVerticalLayout(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.verticalLayoutItems, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.groupsData, event.previousIndex, event.currentIndex);
   }
 
-  dropBasicItem(event: CdkDragDrop<string[]>, index: number) {
-    moveItemInArray(this.timePeriods[index], event.previousIndex, event.currentIndex);
+  dropBasicItem(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
   }
 
   onResizeEnd(event: ResizeEvent): void {

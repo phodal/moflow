@@ -1,12 +1,13 @@
 <div cdkDropList cdkDropListOrientation="vertical" class="vertical-layout"
      (cdkDropListDropped)="dropVerticalLayout($event)">
 
-  <div cdkDrag #verticalItem cdkDragBoundary="verticalItem" class="vertical-layout-item"
-       *ngFor="let verticalLayoutItem of verticalLayoutItems;let verticalIndex = index"
-       [ngClass]="'vertical-layout-item-' + verticalIndex">
+  <div cdkDropListGroup cdkDrag class="vertical-layout-item"
+       *ngFor="let group of groupsData;let verticalIndex = index"
+       [ngClass]="'vertical-layout-item-' + verticalIndex" [cdkDragData]="group">
 
     <div cdkDropList class="example-list" cdkDropListOrientation="horizontal"
-         (cdkDropListDropped)="dropBasicItem($event, verticalIndex)"
+         (cdkDropListDropped)="dropBasicItem($event)"
+         [cdkDropListData]="group.items"
 
          mwlResizable
          [enableGhostResize]="true"
@@ -21,7 +22,7 @@
         </svg>
       </div>
 
-      <div class="example-box" *ngFor="let timePeriod of timePeriods[verticalIndex]" cdkDrag>{{timePeriod}}</div>
+      <div class="example-box" *ngFor="let item of group.items" cdkDrag>{{item}}</div>
     </div>
   </div>
 </div>
