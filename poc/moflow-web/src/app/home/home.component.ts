@@ -79,9 +79,6 @@ export class HomeComponent implements OnInit {
 
   onResizeEnd(event: ResizeEvent, group): void {
     group.style = {
-      position: 'fixed',
-      left: `${event.rectangle.left}px`,
-      top: `${event.rectangle.top}px`,
       width: `${event.rectangle.width}px`,
       height: `${event.rectangle.height}px`
     };
