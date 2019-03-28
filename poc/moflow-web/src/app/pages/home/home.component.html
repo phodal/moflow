@@ -11,7 +11,7 @@
 
       <div cdkDropList class="example-list" cdkDropListOrientation="horizontal"
            (cdkDropListDropped)="dropBasicItem($event)"
-           [cdkDropListData]="group.items"
+           [cdkDropListData]="group.blocks"
 
            mwlResizable
            [enableGhostResize]="true"
@@ -27,7 +27,7 @@
           </svg>
         </div>
 
-        <div class="example-box" *ngFor="let item of group.items" cdkDrag>
+        <div class="example-box" *ngFor="let item of group.blocks" cdkDrag>
           <element-dispatcher [component]="item">{{item}}</element-dispatcher>
         </div>
       </div>

@@ -13,5 +13,5 @@ export interface MoFlowBlock {
 export interface MoFlowItem {
   id: number,
   style?: string,
-  items: Array<MoFlowBlock>
+  blocks: Array<MoFlowBlock>
 }

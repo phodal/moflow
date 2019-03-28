@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     {
       id: 1,
       style: '',
-      items: [
+      blocks: [
         {content: {title: 'Bronze age'}},
         {content: {title: 'Iron age'}},
         {content: {title: 'Middle ages'}},
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
     {
       id: 2,
       style: '',
-      items: [{
+      blocks: [{
         type: 'card',
         content: {
           title: 'hello',
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
     },
     {
       id: 3,
-      items: [{
+      blocks: [{
         type: 'molist',
         content: {
           title: 'hello',
