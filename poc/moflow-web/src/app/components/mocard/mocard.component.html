@@ -1,1 +1,9 @@
-<mat-card>Simple card</mat-card>
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{componentData?.title}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    {{componentData?.content}}
+  </mat-card-content>
+</mat-card>

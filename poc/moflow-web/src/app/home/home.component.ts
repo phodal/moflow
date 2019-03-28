@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ResizeEvent } from 'angular-resizable-element';
+import { MoFlowItem } from '../model/mo-flow-item';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +9,9 @@ import { ResizeEvent } from 'angular-resizable-element';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  groupsData = [{
+  groupsData: Array<MoFlowItem> = [{
     id: 1,
+    style: '',
     items: [
       'Bronze age',
       'Iron age',
@@ -19,6 +21,7 @@ export class HomeComponent implements OnInit {
     ]
   }, {
     id: 2,
+    style: '',
     items: [{
       type: 'card',
       item: 'aff'
@@ -50,7 +53,22 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  onResizeEnd(event: ResizeEvent): void {
-    console.log('Element was resized', event);
+  validate(event: ResizeEvent): boolean {
+    const MIN_DIMENSIONS_PX: number = 50;
+    let hasWidthHeight = event.rectangle.width && event.rectangle.height;
+    if (hasWidthHeight && (event.rectangle.width < MIN_DIMENSIONS_PX || event.rectangle.height < MIN_DIMENSIONS_PX)) {
+      return false;
+    }
+    return true;
+  }
+
+  onResizeEnd(event: ResizeEvent, group): void {
+    group.style = {
+      position: 'fixed',
+      left: `${event.rectangle.left}px`,
+      top: `${event.rectangle.top}px`,
+      width: `${event.rectangle.width}px`,
+      height: `${event.rectangle.height}px`
+    };
   }
 }

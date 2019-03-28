@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-mocard',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mocard.component.scss']
 })
 export class MocardComponent implements OnInit {
-
+  @Input() componentData;
   constructor() { }
 
   ngOnInit() {

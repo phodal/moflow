@@ -3,6 +3,7 @@
 
   <div cdkDropListGroup cdkDrag class="vertical-layout-item"
        *ngFor="let group of groupsData;let verticalIndex = index"
+       [ngStyle]="group.style"
        [ngClass]="'vertical-layout-item-' + verticalIndex" [cdkDragData]="group">
 
     <div cdkDropList class="example-list" cdkDropListOrientation="horizontal"
@@ -11,8 +12,9 @@
 
          mwlResizable
          [enableGhostResize]="true"
+         [ngStyle]="group.style"
          [resizeEdges]="{bottom: true, right: true, top: true, left: true}"
-         (resizeEnd)="onResizeEnd($event)">
+         (resizeEnd)="onResizeEnd($event, group)">
 
       <div class="example-handle" cdkDragHandle>
         <svg width="24px" fill="currentColor" viewBox="0 0 24 24">

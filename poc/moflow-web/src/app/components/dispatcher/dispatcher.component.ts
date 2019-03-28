@@ -12,17 +12,24 @@ export class DispatcherComponent implements OnInit {
   @Input() component: any;
   componentType: string;
 
-  private componentPortal: ComponentPortal<any>;
-  private cardComponentPortal: ComponentPortal<MocardComponent>;
+  componentPortal: ComponentPortal<any>;
+  cardComponentPortal: ComponentPortal<MocardComponent>;
 
   constructor() {
-    this.componentPortal = new ComponentPortal(HeaderComponent);
-    this.cardComponentPortal = new ComponentPortal(MocardComponent);
+
   }
 
   ngOnInit() {
-    console.log(this.component);
-    this.componentType = this.component ? this.component.type : ''
+    this.componentType = this.component ? this.component.type : '';
+
+    this.createComponents();
   }
 
+  private createComponents() {
+    if (this.componentType === 'card') {
+      this.cardComponentPortal = new ComponentPortal(MocardComponent);
+    } else {
+      this.componentPortal = new ComponentPortal(HeaderComponent);
+    }
+  }
 }
