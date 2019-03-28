@@ -1,32 +1,41 @@
-<div cdkDropList cdkDropListOrientation="vertical" class="vertical-layout"
-     (cdkDropListDropped)="dropVerticalLayout($event)">
+<div fxLayout="row" fxLayoutAlign="space-between">
+  <div fxLayout="column" fxLayoutAlign="space-between" fxFlex="80%" fxFlex.gt-xs="80%" fxFlex.xs="100%"
+       cdkDropList cdkDropListOrientation="vertical"
+       (cdkDropListDropped)="dropVerticalLayout($event)">
 
-  <div cdkDropListGroup cdkDrag class="vertical-layout-item"
-       *ngFor="let group of groupsData;let verticalIndex = index"
-       [ngStyle]="group.style"
-       [ngClass]="'vertical-layout-item-' + verticalIndex" [cdkDragData]="group">
-
-    <div cdkDropList class="example-list" cdkDropListOrientation="horizontal"
-         (cdkDropListDropped)="dropBasicItem($event)"
-         [cdkDropListData]="group.items"
-
-         mwlResizable
-         [enableGhostResize]="true"
+    <div cdkDropListGroup cdkDrag class="vertical-layout-item"
+         *ngFor="let group of groupsData;let verticalIndex = index"
          [ngStyle]="group.style"
-         [resizeEdges]="{bottom: true, right: true, top: true, left: true}"
-         (resizeEnd)="onResizeEnd($event, group)">
+         [ngClass]="'vertical-layout-item-' + verticalIndex" [cdkDragData]="group">
 
-      <div class="drag-handle" cdkDragHandle>
-        <svg width="24px" fill="currentColor" viewBox="0 0 24 24" class="handle-icon">
-          <path
-            d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
-          <path d="M0 0h24v24H0z" fill="none"></path>
-        </svg>
-      </div>
+      <div cdkDropList class="example-list" cdkDropListOrientation="horizontal"
+           (cdkDropListDropped)="dropBasicItem($event)"
+           [cdkDropListData]="group.items"
 
-      <div class="example-box" *ngFor="let item of group.items" cdkDrag>
-        <app-dispatcher [component]="item">{{item}}</app-dispatcher>
+           mwlResizable
+           [enableGhostResize]="true"
+           [ngStyle]="group.style"
+           [resizeEdges]="{bottom: true, right: true, top: true, left: true}"
+           (resizeEnd)="onResizeEnd($event, group)">
+
+        <div class="drag-handle" cdkDragHandle>
+          <svg width="24px" fill="currentColor" viewBox="0 0 24 24" class="handle-icon">
+            <path
+              d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+            <path d="M0 0h24v24H0z" fill="none"></path>
+          </svg>
+        </div>
+
+        <div class="example-box" *ngFor="let item of group.items" cdkDrag>
+          <app-dispatcher [component]="item">{{item}}</app-dispatcher>
+        </div>
       </div>
+    </div>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="space-between" fxFlex="20%" fxFlex.gt-xs="20%" fxHide.xs>
+    <div>
+      <h1>header</h1>
     </div>
   </div>
 </div>

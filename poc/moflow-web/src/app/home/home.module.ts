@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ResizableModule } from 'angular-resizable-element';
 import { ComponentsModule } from '../components/components.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { ComponentsModule } from '../components/components.module';
     CommonModule,
     DragDropModule,
     ResizableModule,
+    FlexLayoutModule,
     RouterModule.forChild([
       {
         path: '**',
