@@ -27,10 +27,8 @@ export class HomeComponent implements OnInit {
       'Long nineteenth century'
     ]
   }];
-  private componentPortal: ComponentPortal<any>;
 
   constructor() {
-    this.componentPortal = new ComponentPortal(HeaderComponent);
   }
 
   ngOnInit() {

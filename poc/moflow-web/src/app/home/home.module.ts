@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ResizableModule } from 'angular-resizable-element';
-import { PortalModule } from '@angular/cdk/portal';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
@@ -13,14 +13,14 @@ import { PortalModule } from '@angular/cdk/portal';
     CommonModule,
     DragDropModule,
     ResizableModule,
-    PortalModule,
     RouterModule.forChild([
       {
         path: '**',
         component: HomeComponent,
-        data: { title: 'Home' }
+        data: {title: 'Home'}
       }
-    ])
+    ]),
+    ComponentsModule
   ],
   declarations: [HomeComponent]
 })

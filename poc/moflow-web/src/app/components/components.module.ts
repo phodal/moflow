@@ -1,14 +1,23 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
+import { PortalModule } from '@angular/cdk/portal';
+import { DispatcherComponent } from './dispatcher/dispatcher.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    DispatcherComponent
   ],
-  entryComponents: [ HeaderComponent, ],
+  entryComponents: [HeaderComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    PortalModule,
+  ],
+  exports: [
+    HeaderComponent,
+    DispatcherComponent
   ]
 })
-export class ComponentsModule { }
+export class ComponentsModule {
+}
