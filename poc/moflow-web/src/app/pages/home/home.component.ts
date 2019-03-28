@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ResizeEvent } from 'angular-resizable-element';
-import { MoFlowItem } from '../model/mo-flow-item';
+import { MoFlowItem } from '../../model/mo-flow-item';
 
 @Component({
   selector: 'app-home',
