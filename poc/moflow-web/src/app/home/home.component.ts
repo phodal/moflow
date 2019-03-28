@@ -58,6 +58,7 @@ export class HomeComponent implements OnInit {
 
   dropVerticalLayout(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.groupsData, event.previousIndex, event.currentIndex);
+    this.showData();
   }
 
   dropBasicItem(event: CdkDragDrop<string[]>) {
@@ -69,6 +70,7 @@ export class HomeComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
+    this.showData();
   }
 
   static validate(event: ResizeEvent): boolean {
@@ -82,5 +84,10 @@ export class HomeComponent implements OnInit {
       width: `${event.rectangle.width}px`,
       height: `${event.rectangle.height}px`
     };
+    this.showData();
+  }
+
+  showData() {
+    console.log(this.groupsData);
   }
 }

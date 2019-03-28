@@ -39,6 +39,14 @@
   border: 1px dashed #CCCCCC;
 }
 
+.drag-handle {
+  position: relative;
+}
+
+.handle-icon {
+  position: relative;
+}
+
 mwlResizable {
   box-sizing: border-box; // required for the enableGhostResize option to work
 }
