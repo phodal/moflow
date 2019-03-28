@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ResizeEvent } from 'angular-resizable-element';
-import { HeaderComponent } from '../components/header/header.component';
-import { ComponentPortal } from '@angular/cdk/portal';
 
 @Component({
   selector: 'app-home',
@@ -21,11 +19,13 @@ export class HomeComponent implements OnInit {
     ]
   }, {
     id: 2,
-    items: [
-      'Bronze age',
-      'Early modern period',
-      'Long nineteenth century'
-    ]
+    items: [{
+      type: 'card',
+      item: 'aff'
+    }, {
+      type: 'card',
+      value: ''
+    }]
   }];
 
   constructor() {

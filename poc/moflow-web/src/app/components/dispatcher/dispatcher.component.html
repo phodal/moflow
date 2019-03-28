@@ -1,1 +1,8 @@
-<ng-template [cdkPortalOutlet]="componentPortal"></ng-template>
+<div [ngSwitch]="componentType">
+  <div *ngSwitchCase="'card'">
+    <ng-template [cdkPortalOutlet]="cardComponentPortal"></ng-template>
+  </div>
+  <div *ngSwitchDefault>
+    <ng-template [cdkPortalOutlet]="componentPortal"></ng-template>
+  </div>
+</div>
