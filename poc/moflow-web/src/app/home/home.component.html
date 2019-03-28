@@ -22,7 +22,9 @@
         </svg>
       </div>
 
-      <div class="example-box" *ngFor="let item of group.items" cdkDrag>{{item}}</div>
+      <div class="example-box" *ngFor="let item of group.items" cdkDrag>
+        <ng-template [cdkPortalOutlet]="componentPortal"></ng-template>
+      </div>
     </div>
   </div>
 </div>

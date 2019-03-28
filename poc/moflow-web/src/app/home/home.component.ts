@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ResizeEvent } from 'angular-resizable-element';
+import { HeaderComponent } from '../components/header/header.component';
+import { ComponentPortal } from '@angular/cdk/portal';
 
 @Component({
   selector: 'app-home',
@@ -25,8 +27,10 @@ export class HomeComponent implements OnInit {
       'Long nineteenth century'
     ]
   }];
+  private componentPortal: ComponentPortal<any>;
 
   constructor() {
+    this.componentPortal = new ComponentPortal(HeaderComponent);
   }
 
   ngOnInit() {
