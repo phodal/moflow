@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
-import { ComponentsModule } from '../components/components.module';
+import { ElementsModule } from '../elements/elements.module';
 
 @NgModule({
   declarations: [],
@@ -9,7 +9,7 @@ import { ComponentsModule } from '../components/components.module';
     MatButtonModule,
     MatCheckboxModule,
     CommonModule,
-    ComponentsModule
+    ElementsModule
   ]
 })
 export class SharedModule {

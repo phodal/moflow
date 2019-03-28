@@ -33,5 +33,5 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     MolistComponent
   ]
 })
-export class ComponentsModule {
+export class ElementsModule {
 }

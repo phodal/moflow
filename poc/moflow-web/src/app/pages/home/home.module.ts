@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ResizableModule } from 'angular-resizable-element';
-import { ComponentsModule } from '../../components/components.module';
+import { ElementsModule } from '../../elements/elements.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -22,7 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         data: {title: 'Home'}
       }
     ]),
-    ComponentsModule
+    ElementsModule
   ],
   declarations: [HomeComponent]
 })
