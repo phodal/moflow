@@ -5,6 +5,7 @@ import { DispatcherComponent } from './dispatcher/dispatcher.component';
 import { CommonModule } from '@angular/common';
 import { MocardComponent } from './mocard/mocard.component';
 import { MatCardModule } from '@angular/material';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { MatCardModule } from '@angular/material';
   imports: [
     CommonModule,
     PortalModule,
+    OverlayModule,
     MatCardModule
   ],
   exports: [
