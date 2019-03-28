@@ -2,6 +2,7 @@
   <div fxLayout="column" fxLayoutAlign="space-between" fxFlex="80%" fxFlex.gt-xs="80%" fxFlex.xs="100%"
        #showList="cdkDropList"
        cdkDropList cdkDropListOrientation="vertical"
+       [cdkDropListData]="groupsData"
        (cdkDropListDropped)="dropVerticalLayout($event)">
 
     <div cdkDropListGroup cdkDrag class="vertical-layout-item"

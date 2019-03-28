@@ -75,7 +75,15 @@ export class HomeComponent implements OnInit {
   }
 
   dropVerticalLayout(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.groupsData, event.previousIndex, event.currentIndex);
+    console.log(event.previousContainer, event.container.data);
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
     this.showData();
   }
 
