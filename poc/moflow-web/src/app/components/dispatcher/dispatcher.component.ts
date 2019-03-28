@@ -64,7 +64,7 @@ export class DispatcherComponent implements OnInit, AfterViewInit {
     );
 
     const componentRef = this.portalHost.attach(portal);
-    componentRef.instance.componentData = this.component.data;
+    componentRef.instance.componentData = this.component.content;
     componentRef.changeDetectorRef.detectChanges();
   }
 }

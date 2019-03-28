@@ -14,34 +14,32 @@ export class HomeComponent implements OnInit {
     style: '',
     items: [
       {
-        data: {title: 'Bronze age'}
+        content: {title: 'Bronze age'}
       },
       {
-        data: {title: 'Iron age'}
+        content: {title: 'Iron age'}
       },
       {
-        data: {title: 'Middle ages'}
+        content: {title: 'Middle ages'}
       },
       {
-        data: {title: 'Early modern period'}
+        content: {title: 'Early modern period'}
       },
       {
-        data: {title: 'Long nineteenth century'}
+        content: {title: 'Long nineteenth century'}
       }]
   }, {
     id: 2,
     style: '',
     items: [{
       type: 'card',
-      item: 'aff',
-      data: {
+      content: {
         title: 'hello',
         content: 'content'
       }
     }, {
       type: 'card',
-      value: '',
-      data: {
+      content: {
         title: 'hello',
         content: 'content'
       }
