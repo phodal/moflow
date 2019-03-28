@@ -7,6 +7,11 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  verticalLayoutItem = [
+    'hello',
+    'second'
+  ];
+
   timePeriods = [
     'Bronze age',
     'Iron age',
@@ -15,8 +20,12 @@ export class HomeComponent implements OnInit {
     'Long nineteenth century'
   ];
 
-  drop(event: CdkDragDrop<string[]>) {
+  dropVerticalLayout(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.timePeriods, event.previousIndex, event.currentIndex);
+  }
+
+  dropBasicItem(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.verticalLayoutItem, event.previousIndex, event.currentIndex);
   }
 
   constructor() { }

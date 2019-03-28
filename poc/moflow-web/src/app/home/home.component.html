@@ -1,3 +1,17 @@
-<div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let timePeriod of timePeriods" cdkDrag>{{timePeriod}}</div>
+<div cdkDropList cdkDropListOrientation="vertical" class="vertical-layout"
+     (cdkDropListDropped)="dropVerticalLayout($event)">
+
+  <div cdkDrag class="vertical-layout-item">
+    <div cdkDropList class="example-list" cdkDropListOrientation="horizontal"
+         (cdkDropListDropped)="dropBasicItem($event)">
+      <div class="example-box" *ngFor="let timePeriod of timePeriods" cdkDrag>{{timePeriod}}</div>
+    </div>
+  </div>
+
+  <div cdkDrag class="vertical-layout-item">
+    <div cdkDropList class="example-list" cdkDropListOrientation="horizontal"
+         (cdkDropListDropped)="dropBasicItem($event)">
+      <div class="example-box" *ngFor="let timePeriod of timePeriods" cdkDrag>{{timePeriod}}</div>
+    </div>
+  </div>
 </div>
