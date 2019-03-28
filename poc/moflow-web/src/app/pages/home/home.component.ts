@@ -9,6 +9,24 @@ import { MoFlowItem } from '../../model/mo-flow-item';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  elementLists = [{
+    type: 'card',
+    content: {
+      title: 'hello',
+      content: 'content'
+    }
+  }, {
+    type: 'content',
+    content: {title: 'Bronze age'}
+  }, {
+    type: 'molist',
+    content: {
+      title: 'hello',
+      styles: {height: '200px'},
+      items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    }
+  }];
+
   groupsData: Array<MoFlowItem> = [
     {
       id: 1,
@@ -62,6 +80,18 @@ export class HomeComponent implements OnInit {
   }
 
   dropBasicItem(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+    this.showData();
+  }
+
+  dropTileItem(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {

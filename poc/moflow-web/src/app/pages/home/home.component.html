@@ -1,5 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="space-between">
   <div fxLayout="column" fxLayoutAlign="space-between" fxFlex="80%" fxFlex.gt-xs="80%" fxFlex.xs="100%"
+       #showList="cdkDropList"
        cdkDropList cdkDropListOrientation="vertical"
        (cdkDropListDropped)="dropVerticalLayout($event)">
 
@@ -34,6 +35,13 @@
   </div>
 
   <div fxLayout="column" fxLayoutAlign="space-between" fxFlex="20%" fxFlex.gt-xs="20%" fxHide.xs>
-    <mo-picker></mo-picker>
+    <div cdkDropList [cdkDropListData]="elementLists"
+         [cdkDropListConnectedTo]="[showList]"
+         (cdkDropListDropped)="dropTileItem($event)">
+      <div class="tile-item" *ngFor="let element of elementLists" cdkDrag>
+        {{element.type}}
+      </div>
+    </div>
+
   </div>
 </div>

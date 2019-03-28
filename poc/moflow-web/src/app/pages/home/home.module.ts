@@ -8,6 +8,7 @@ import { ResizableModule } from 'angular-resizable-element';
 import { ElementsModule } from '../../elements/elements.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ComponentsModule } from '../../components/components.module';
+import { MatGridListModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { ComponentsModule } from '../../components/components.module';
     FlexLayoutModule,
     SharedModule,
     ComponentsModule,
+    MatGridListModule,
     RouterModule.forChild([
       {
         path: '**',
