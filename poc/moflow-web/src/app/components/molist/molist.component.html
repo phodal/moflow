@@ -1,0 +1,20 @@
+<div class="list"
+     *ngIf="items"
+     [ngStyle]="styles"
+     infiniteScroll #scrollingBlock
+     [infiniteScrollDistance]="scrollRadio"
+     [infiniteScrollThrottle]="50"
+     [infiniteScrollDisabled]="!hasNext"
+     (scrolledUp)="scrollUp($event)"
+     (scrolledDown)="scrollDown($event)">
+
+  <div class="loading-more">
+    <span *ngIf="loadingMore">loading...</span>
+  </div>
+
+  <virtual-scroller class="content" #scroll [items]="items" [enableUnequalChildrenSizes]="true" [parentScroll]="scrollingBlock">
+    <div *ngFor="let item of scroll.viewPortItems" (click)="clickItem($event)">
+      <div class="item">{{item}}</div>
+    </div>
+  </virtual-scroller>
+</div>

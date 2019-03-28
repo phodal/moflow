@@ -1,10 +1,12 @@
 export interface MoFlowBlock {
-  type?: "card" | ""
+  type?: "card" | "molist" | any
   content: {
     title?: string,
     subtitle?: string,
     content?: string,
-    src?: string
+    styles?: any,
+    src?: string,
+    items?: Array<any>,
   },
 }
 

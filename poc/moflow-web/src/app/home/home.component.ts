@@ -9,42 +9,45 @@ import { MoFlowItem } from '../model/mo-flow-item';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  groupsData: Array<MoFlowItem> = [{
-    id: 1,
-    style: '',
-    items: [
-      {
-        content: {title: 'Bronze age'}
-      },
-      {
-        content: {title: 'Iron age'}
-      },
-      {
-        content: {title: 'Middle ages'}
-      },
-      {
-        content: {title: 'Early modern period'}
-      },
-      {
-        content: {title: 'Long nineteenth century'}
+  groupsData: Array<MoFlowItem> = [
+    {
+      id: 1,
+      style: '',
+      items: [
+        {content: {title: 'Bronze age'}},
+        {content: {title: 'Iron age'}},
+        {content: {title: 'Middle ages'}},
+        {content: {title: 'Early modern period'}}
+      ]
+    },
+    {
+      id: 2,
+      style: '',
+      items: [{
+        type: 'card',
+        content: {
+          title: 'hello',
+          content: 'content'
+        }
+      }, {
+        type: 'card',
+        content: {
+          title: 'hello',
+          content: 'content'
+        }
       }]
-  }, {
-    id: 2,
-    style: '',
-    items: [{
-      type: 'card',
-      content: {
-        title: 'hello',
-        content: 'content'
-      }
-    }, {
-      type: 'card',
-      content: {
-        title: 'hello',
-        content: 'content'
-      }
-    }]
-  }];
+    },
+    {
+      id: 3,
+      items: [{
+        type: 'molist',
+        content: {
+          title: 'hello',
+          styles: {height: '200px'},
+          items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+        }
+      }]
+    }];
 
   constructor() {
   }
@@ -68,13 +71,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  validate(event: ResizeEvent): boolean {
+  static validate(event: ResizeEvent): boolean {
     const MIN_DIMENSIONS_PX: number = 50;
     let hasWidthHeight = event.rectangle.width && event.rectangle.height;
-    if (hasWidthHeight && (event.rectangle.width < MIN_DIMENSIONS_PX || event.rectangle.height < MIN_DIMENSIONS_PX)) {
-      return false;
-    }
-    return true;
+    return !(hasWidthHeight && (event.rectangle.width < MIN_DIMENSIONS_PX || event.rectangle.height < MIN_DIMENSIONS_PX));
   }
 
   onResizeEnd(event: ResizeEvent, group): void {

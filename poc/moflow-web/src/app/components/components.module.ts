@@ -6,24 +6,31 @@ import { CommonModule } from '@angular/common';
 import { MocardComponent } from './mocard/mocard.component';
 import { MatCardModule } from '@angular/material';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { MolistComponent } from './molist/molist.component';
+import { VirtualScrollerModule } from 'ngx-virtual-scroller';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     DispatcherComponent,
-    MocardComponent
+    MocardComponent,
+    MolistComponent
   ],
-  entryComponents: [HeaderComponent, MocardComponent],
+  entryComponents: [HeaderComponent, MocardComponent, MolistComponent],
   imports: [
     CommonModule,
     PortalModule,
     OverlayModule,
-    MatCardModule
+    MatCardModule,
+    VirtualScrollerModule,
+    InfiniteScrollModule,
   ],
   exports: [
     HeaderComponent,
     DispatcherComponent,
-    MocardComponent
+    MocardComponent,
+    MolistComponent
   ]
 })
 export class ComponentsModule {

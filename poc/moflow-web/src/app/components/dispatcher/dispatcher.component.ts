@@ -14,6 +14,7 @@ import {
 import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
 import { HeaderComponent } from '../header/header.component';
 import { MocardComponent } from '../mocard/mocard.component';
+import { MolistComponent } from '../molist/molist.component';
 
 export const CONTAINER_DATA = new InjectionToken<{}>('CONTAINER_DATA');
 
@@ -30,6 +31,7 @@ export class DispatcherComponent implements OnInit, AfterViewInit {
   componentType: string;
   defaultComponentPortal: ComponentPortal<any>;
   cardComponentPortal: ComponentPortal<MocardComponent>;
+  molistComponentPortal: ComponentPortal<any>;
   portalHost: DomPortalHost;
 
   constructor(private appRef: ApplicationRef,
@@ -46,12 +48,19 @@ export class DispatcherComponent implements OnInit, AfterViewInit {
   }
 
   private createComponents() {
-    if (this.componentType === 'card') {
-      this.cardComponentPortal = new ComponentPortal(MocardComponent);
-      this.attachData(this.cardComponentPortal);
-    } else {
-      this.defaultComponentPortal = new ComponentPortal(HeaderComponent);
-      this.attachData(this.defaultComponentPortal);
+    switch (this.componentType) {
+      case 'card':
+        this.cardComponentPortal = new ComponentPortal(MocardComponent);
+        this.attachData(this.cardComponentPortal);
+        break;
+      case 'molist':
+        this.molistComponentPortal = new ComponentPortal(MolistComponent);
+        this.attachData(this.molistComponentPortal);
+        break;
+      default:
+        this.defaultComponentPortal = new ComponentPortal(HeaderComponent);
+        this.attachData(this.defaultComponentPortal);
+        break;
     }
   }
 
