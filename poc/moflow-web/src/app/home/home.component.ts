@@ -8,24 +8,22 @@ import { ResizeEvent } from 'angular-resizable-element';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  verticalLayoutItem = [
+  verticalLayoutItems = [
     'hello',
     'second'
   ];
 
-  timePeriods = [
+  timePeriods = [[
     'Bronze age',
     'Iron age',
     'Middle ages',
     'Early modern period',
     'Long nineteenth century'
-  ];
-
-  timePeriods2 = [
+  ], [
     'Bronze age',
     'Early modern period',
     'Long nineteenth century'
-  ];
+  ]];
 
   constructor() { }
 
@@ -34,11 +32,11 @@ export class HomeComponent implements OnInit {
   }
 
   dropVerticalLayout(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.verticalLayoutItem, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.verticalLayoutItems, event.previousIndex, event.currentIndex);
   }
 
-  dropBasicItem(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.timePeriods, event.previousIndex, event.currentIndex);
+  dropBasicItem(event: CdkDragDrop<string[]>, index: number) {
+    moveItemInArray(this.timePeriods[index], event.previousIndex, event.currentIndex);
   }
 
   onResizeEnd(event: ResizeEvent): void {
