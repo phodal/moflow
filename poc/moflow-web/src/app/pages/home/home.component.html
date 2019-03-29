@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="space-between">
   <div fxLayout="column" fxLayoutAlign="space-between" fxFlex="80%" fxFlex.gt-xs="80%" fxFlex.xs="100%"
-       #showList="cdkDropList"
+       [id]="'showList'"
        cdkDropList cdkDropListOrientation="vertical"
        [cdkDropListData]="groupsData"
        (cdkDropListDropped)="dropVerticalLayout($event)">
@@ -10,9 +10,11 @@
          [ngStyle]="group.style"
          [ngClass]="'vertical-layout-item-' + verticalIndex" [cdkDragData]="group">
 
-      <div cdkDropList class="example-list" cdkDropListOrientation="horizontal"
-           (cdkDropListDropped)="dropBasicItem($event)"
+      <div class="example-list" cdkDropListOrientation="horizontal"
+           cdkDropList
+           [id]="'verticalLayoutItem' + group.id"
            [cdkDropListData]="group.blocks"
+           (cdkDropListDropped)="dropBasicItem($event)"
 
            mwlResizable
            [enableGhostResize]="true"
@@ -38,7 +40,7 @@
   <div fxLayout="column" fxLayoutAlign="space-between" fxFlex="20%" fxFlex.gt-xs="20%" fxHide.xs>
     <div cdkDropList id="source-element-list"
          [cdkDropListData]="elementLists"
-         [cdkDropListConnectedTo]="[showList]"
+         [cdkDropListConnectedTo]="getConnectedItem()"
          (cdkDropListDropped)="dropTileItem($event)">
       <div class="tile-item" *ngFor="let element of elementLists" cdkDrag>
         {{element.type}}

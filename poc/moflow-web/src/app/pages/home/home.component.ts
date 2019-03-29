@@ -152,6 +152,7 @@ export class HomeComponent implements OnInit {
 
   private buildItem(message): any {
     return {
+      id: this.elementLists.length + 1,
       blocks: message
     };
   }
@@ -162,5 +163,13 @@ export class HomeComponent implements OnInit {
 
   showData() {
     console.log(this.groupsData);
+  }
+
+  getConnectedItem() {
+    let results = ['showList'];
+    for (let i = 0;i < this.groupsData.length;i++) {
+      results.push('verticalLayoutItem' + this.groupsData[i]['id']);
+    }
+    return results;
   }
 }
