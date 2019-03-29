@@ -191,6 +191,7 @@ export class HomeComponent implements OnInit {
   processData() {
     this.dropList = this.getConnectedItem();
     localStorage.setItem('moflow.items', JSON.stringify(this.groupsData));
+    console.log(JSON.stringify(this.groupsData));
   }
 
   getConnectedItem() {
