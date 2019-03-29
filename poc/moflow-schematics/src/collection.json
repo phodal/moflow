@@ -1,0 +1,9 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "moflow-schematics": {
+      "description": "A blank schematic.",
+      "factory": "./moflow-schematics/index#moflowSchematics"
+    }
+  }
+}
