@@ -9,6 +9,14 @@ import { MoFlowItem } from '../../model/mo-flow-item';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  layoutLists = [{
+    type: 'card',
+    content: {
+      title: 'hello',
+      content: 'content'
+    }
+  }]
+
   elementLists = [{
     type: 'card',
     content: {
@@ -77,7 +85,10 @@ export class HomeComponent implements OnInit {
 
   dropVerticalLayout(event: CdkDragDrop<string[]>) {
     if (event.previousContainer.id === 'source-element-list') {
-      console.log(event.previousContainer.data, event.previousContainer.id);
+      return;
+    }
+
+    if (event.previousContainer.id === 'source-layout-list') {
       this.transferElementItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
@@ -146,14 +157,14 @@ export class HomeComponent implements OnInit {
     if (currentArray.length) {
       let forked = JSON.parse(JSON.stringify(currentArray));
       let message = forked.splice(from, 1);
-      targetArray.splice(to, 0, this.buildItem(message));
+      targetArray.splice(to, 0, this.buildLayout(message));
     }
   }
 
-  private buildItem(message): any {
+  private buildLayout(message): any {
     return {
       id: this.elementLists.length + 1,
-      blocks: message
+      blocks: []
     };
   }
 
@@ -166,7 +177,7 @@ export class HomeComponent implements OnInit {
   }
 
   getConnectedItem() {
-    let results = ['showList'];
+    let results = [];
     for (let i = 0;i < this.groupsData.length;i++) {
       results.push('verticalLayoutItem' + this.groupsData[i]['id']);
     }
