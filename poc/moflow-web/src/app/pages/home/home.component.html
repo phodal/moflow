@@ -36,7 +36,8 @@
   </div>
 
   <div fxLayout="column" fxLayoutAlign="space-between" fxFlex="20%" fxFlex.gt-xs="20%" fxHide.xs>
-    <div cdkDropList [cdkDropListData]="elementLists"
+    <div cdkDropList id="source-element-list"
+         [cdkDropListData]="elementLists"
          [cdkDropListConnectedTo]="[showList]"
          (cdkDropListDropped)="dropTileItem($event)">
       <div class="tile-item" *ngFor="let element of elementLists" cdkDrag>

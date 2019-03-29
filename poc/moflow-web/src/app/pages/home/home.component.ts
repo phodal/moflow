@@ -66,25 +66,25 @@ export class HomeComponent implements OnInit {
         }
       }]
     }];
+  private forkElementsList:any;
 
   constructor() {
   }
 
   ngOnInit() {
-
+    this.forkElementsList = JSON.parse(JSON.stringify(this.elementLists));
   }
 
   dropVerticalLayout(event: CdkDragDrop<string[]>) {
-    console.log(event.previousContainer, event.container.data);
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
+    if (event.previousContainer.id === 'source-element-list') {
+      console.log(event.previousContainer.data, event.previousContainer.id);
+      this.transferElementItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+    } else {
+      this.mergeNormalEvent(event);
     }
-    this.showData();
   }
 
   dropBasicItem(event: CdkDragDrop<string[]>) {
@@ -111,6 +111,17 @@ export class HomeComponent implements OnInit {
     this.showData();
   }
 
+  private mergeNormalEvent(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+  }
+
   static validate(event: ResizeEvent): boolean {
     const MIN_DIMENSIONS_PX: number = 50;
     let hasWidthHeight = event.rectangle.width && event.rectangle.height;
@@ -123,6 +134,30 @@ export class HomeComponent implements OnInit {
       height: `${event.rectangle.height}px`
     };
     this.showData();
+  }
+
+  transferElementItem<T = any>(currentArray: T[],
+                               targetArray: T[],
+                               currentIndex: number,
+                               targetIndex: number): void {
+    const from = this.clamp(currentIndex, currentArray.length - 1);
+    const to = this.clamp(targetIndex, targetArray.length);
+
+    if (currentArray.length) {
+      let forked = JSON.parse(JSON.stringify(currentArray));
+      let message = forked.splice(from, 1);
+      targetArray.splice(to, 0, this.buildItem(message));
+    }
+  }
+
+  private buildItem(message): any {
+    return {
+      blocks: message
+    };
+  }
+
+  clamp(value: number, max: number): number {
+    return Math.max(0, Math.min(max, value));
   }
 
   showData() {
