@@ -75,12 +75,14 @@ export class HomeComponent implements OnInit {
       }]
     }];
   private forkElementsList:any;
+  dropList: any[];
 
   constructor() {
   }
 
   ngOnInit() {
     this.forkElementsList = JSON.parse(JSON.stringify(this.elementLists));
+    this.dropList = this.getConnectedItem();
   }
 
   dropVerticalLayout(event: CdkDragDrop<string[]>) {
@@ -89,6 +91,18 @@ export class HomeComponent implements OnInit {
     }
 
     if (event.previousContainer.id === 'source-layout-list') {
+      this.transferLayoutItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    } else {
+      this.mergeNormalEvent(event);
+    }
+    this.processData();
+  }
+
+  dropBasicItem(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer.id === 'source-element-list') {
       this.transferElementItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
@@ -96,18 +110,7 @@ export class HomeComponent implements OnInit {
     } else {
       this.mergeNormalEvent(event);
     }
-  }
-
-  dropBasicItem(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);
-    }
-    this.showData();
+    this.processData();
   }
 
   dropTileItem(event: CdkDragDrop<string[]>) {
@@ -119,7 +122,7 @@ export class HomeComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
-    this.showData();
+    this.processData();
   }
 
   private mergeNormalEvent(event: CdkDragDrop<string[]>) {
@@ -144,13 +147,26 @@ export class HomeComponent implements OnInit {
       width: `${event.rectangle.width}px`,
       height: `${event.rectangle.height}px`
     };
-    this.showData();
+    this.processData();
   }
 
   transferElementItem<T = any>(currentArray: T[],
                                targetArray: T[],
                                currentIndex: number,
                                targetIndex: number): void {
+    const from = this.clamp(currentIndex, currentArray.length - 1);
+    const to = this.clamp(targetIndex, targetArray.length);
+
+    if (currentArray.length) {
+      let forked = JSON.parse(JSON.stringify(currentArray));
+      targetArray.splice(to, 0, forked.splice(from, 1)[0]);
+    }
+  }
+
+  transferLayoutItem<T = any>(currentArray: T[],
+                              targetArray: T[],
+                              currentIndex: number,
+                              targetIndex: number): void {
     const from = this.clamp(currentIndex, currentArray.length - 1);
     const to = this.clamp(targetIndex, targetArray.length);
 
@@ -172,8 +188,9 @@ export class HomeComponent implements OnInit {
     return Math.max(0, Math.min(max, value));
   }
 
-  showData() {
-    console.log(this.groupsData);
+  processData() {
+    this.dropList = this.getConnectedItem();
+    localStorage.setItem('moflow.items', JSON.stringify(this.groupsData));
   }
 
   getConnectedItem() {
