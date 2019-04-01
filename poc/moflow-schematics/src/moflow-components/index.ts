@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {chain, noop, Rule, Tree} from '@angular-devkit/schematics';
+import { chain, externalSchematic, noop, Rule, Tree } from '@angular-devkit/schematics';
 import {
   addModuleImportToModule,
   buildComponent,
@@ -21,11 +21,13 @@ import { italic, red } from '@angular-devkit/core/src/terminal';
  * Internally it bootstraps the base component schematic
  */
 export default function(options: Schema): Rule {
-  console.log(options);
   return chain([
     buildComponent({...options}, {
       template: './__path__/__name@dasherize@if-flat__/__name@dasherize__.component.html',
       stylesheet: './__path__/__name@dasherize@if-flat__/__name@dasherize__.component.__styleext__',
+    }),
+    externalSchematic('moflow-schematics', 'moflow-schematics', {
+      name: 'phodal'
     }),
     options.skipImport ? noop() : addNavModulesToModule(options),
     appendHtml(options)

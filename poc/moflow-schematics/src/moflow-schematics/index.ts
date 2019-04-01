@@ -14,6 +14,7 @@ export function setupOptions(host: Tree, options: any): Tree {
 }
 
 export function moflowSchematics(_options: any): Rule {
+  console.log('externalSchematic works');
   return (tree: Tree, _context: SchematicContext) => {
     setupOptions(tree, _options);
 
