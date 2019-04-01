@@ -34,11 +34,6 @@ export default function(options: Schema): Rule {
 function addNavModulesToModule(options: Schema) {
   return (host: Tree) => {
     const modulePath = findModuleFromOptions(host, options)!;
-    addModuleImportToModule(host, modulePath, 'MatGridListModule', '@angular/material');
-    addModuleImportToModule(host, modulePath, 'MatCardModule', '@angular/material');
-    addModuleImportToModule(host, modulePath, 'MatMenuModule', '@angular/material');
-    addModuleImportToModule(host, modulePath, 'MatIconModule', '@angular/material');
-    addModuleImportToModule(host, modulePath, 'MatButtonModule', '@angular/material');
     addModuleImportToModule(host, modulePath, 'LayoutModule', '@angular/cdk/layout');
     return host;
   };
