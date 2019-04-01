@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
     styleUrls: ['./<%= dasherize(name) %>.component.<%= styleext %>']
 })
 export class <%= classify(name) %>Component {
+  <% if(code) { %>
+  hello() {
 
+  }
+  <% } %>
 }

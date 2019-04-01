@@ -33,6 +33,16 @@
       "type": "string",
       "format": "html-selector",
       "description": "The selector to use for the component."
+    },
+    "code": {
+      "type": "boolean",
+      "default": true,
+      "description": "The Code pieces"
+    },
+    "skipImport": {
+      "type": "boolean",
+      "default": true,
+      "description": "The Code pieces"
     }
   },
   "required": [

@@ -21,6 +21,7 @@ import { italic, red } from '@angular-devkit/core/src/terminal';
  * Internally it bootstraps the base component schematic
  */
 export default function(options: Schema): Rule {
+  console.log(options);
   return chain([
     buildComponent({...options}, {
       template: './__path__/__name@dasherize@if-flat__/__name@dasherize__.component.html',
