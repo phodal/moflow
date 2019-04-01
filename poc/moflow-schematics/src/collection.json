@@ -4,6 +4,12 @@
     "moflow-schematics": {
       "description": "A blank schematic.",
       "factory": "./moflow-schematics/index#moflowSchematics"
+    },
+    "moflow-component": {
+      "aliases": [ "c" ],
+      "factory": "./ng-generate/moflow-components",
+      "description": "Create an Angular component.",
+      "schema": "./ng-generate/moflow-components/schema.json"
     }
   }
 }
