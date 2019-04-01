@@ -7,9 +7,9 @@
     },
     "moflow-component": {
       "aliases": [ "c" ],
-      "factory": "./ng-generate/moflow-components",
+      "factory": "./moflow-components",
       "description": "Create an Angular component.",
-      "schema": "./ng-generate/moflow-components/schema.json"
+      "schema": "./moflow-components/schema.json"
     }
   }
 }
