@@ -1,5 +1,5 @@
 {
-  "name": "@moflow-schematics",
+  "name": "moflow-schematics",
   "version": "0.0.0",
   "description": "A blank schematics",
   "scripts": {

@@ -10,7 +10,7 @@ import { chain, externalSchematic, noop, Rule, Tree } from '@angular-devkit/sche
 import {
   addModuleImportToModule,
   buildComponent,
-  findModuleFromOptions, getProjectFromWorkspace, getProjectStyleFile,
+  findModuleFromOptions, getProjectFromWorkspace, getProjectStyleFile, getSourceFile,
 } from '@angular/cdk/schematics';
 import {Schema} from './schema';
 import { getWorkspace } from '@schematics/angular/utility/config';
@@ -26,14 +26,18 @@ export default function(options: Schema): Rule {
       template: './__path__/__name@dasherize@if-flat__/__name@dasherize__.component.html',
       stylesheet: './__path__/__name@dasherize@if-flat__/__name@dasherize__.component.__styleext__',
     }),
+    // 扩展模块
     externalSchematic('moflow-schematics', 'moflow-schematics', {
       name: 'phodal'
     }),
+    // 读取文件
+    options.configFile ? readFileConfig(options) : noop(),
     options.skipImport ? noop() : addNavModulesToModule(options),
     appendHtml(options)
   ]);
 }
 
+// @ts-ignore
 /**
  * Adds the required modules to the relative module.
  */
@@ -44,6 +48,17 @@ function addNavModulesToModule(options: Schema) {
     return host;
   };
 }
+
+function readFileConfig(options: Schema) {
+  return (host: Tree) => {
+    let configFilePath = options.configFile;
+    let sourceFile = getSourceFile(host, configFilePath);
+    let moflowConfig = JSON.parse(sourceFile.text);
+    console.log(configFilePath, moflowConfig);
+    return host;
+  };
+}
+
 
 function appendHtml(options: Schema): Rule {
   return (host: Tree) => {
