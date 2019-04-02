@@ -10,7 +10,7 @@ import { chain, externalSchematic, noop, Rule, Tree } from '@angular-devkit/sche
 import {
   addModuleImportToModule,
   buildComponent,
-  findModuleFromOptions, getProjectFromWorkspace, getProjectStyleFile, getSourceFile,
+  findModuleFromOptions, getProjectFromWorkspace, getProjectMainFile, getProjectStyleFile, getSourceFile,
 } from '@angular/cdk/schematics';
 import {Schema} from './schema';
 import { getWorkspace } from '@schematics/angular/utility/config';
@@ -22,18 +22,17 @@ import { italic, red } from '@angular-devkit/core/src/terminal';
  */
 export default function(options: Schema): Rule {
   return chain([
+    // 读取文件
+    options.configFile ? readFileConfig(options) : noop(),
+    options.skipImport ? noop() : addNavModulesToModule(options),
+    // 扩展模块
+    externalSchematic('moflow-schematics', 'moflow-schematics', options),
     buildComponent({...options}, {
       template: './__path__/__name@dasherize@if-flat__/__name@dasherize__.component.html',
       stylesheet: './__path__/__name@dasherize@if-flat__/__name@dasherize__.component.__styleext__',
     }),
-    // 扩展模块
-    externalSchematic('moflow-schematics', 'moflow-schematics', {
-      name: 'phodal'
-    }),
-    // 读取文件
-    options.configFile ? readFileConfig(options) : noop(),
-    options.skipImport ? noop() : addNavModulesToModule(options),
-    appendHtml(options)
+    appendCode(options),
+    appendStyle(options)
   ]);
 }
 
@@ -54,13 +53,38 @@ function readFileConfig(options: Schema) {
     let configFilePath = options.configFile;
     let sourceFile = getSourceFile(host, configFilePath);
     let moflowConfig = JSON.parse(sourceFile.text);
-    console.log(configFilePath, moflowConfig);
+    options.componentData = moflowConfig;
     return host;
   };
 }
 
+function appendCode(options: Schema) {
+  return (host: Tree) => {
 
-function appendHtml(options: Schema): Rule {
+    const workspace = getWorkspace(host);
+    // const project = getProjectFromWorkspace(workspace, options.project);
+    let filePath = `src/app/${options.name}/${options.name}.component.ts`;
+    const recorder = host.beginUpdate(filePath);
+
+    const buffer = host.read(filePath);
+    if (!buffer) {
+      console.warn(red(`Could not read the default style file within the project ` +
+        `(${italic(filePath)})`));
+      console.warn(red(`Please consider manually setting up the Robot font.`));
+      return;
+    }
+
+    const codeContent = buffer.toString();
+
+    let beforeLastLine = codeContent.length - 5;
+    recorder.insertRight(beforeLastLine, `  halo() {} `);
+    host.commitUpdate(recorder);
+
+    return host;
+  };
+}
+
+function appendStyle(options: Schema): Rule {
   return (host: Tree) => {
     const workspace = getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);

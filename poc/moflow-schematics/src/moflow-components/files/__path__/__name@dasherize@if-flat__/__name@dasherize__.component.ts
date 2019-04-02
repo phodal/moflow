@@ -11,4 +11,7 @@ export class <%= classify(name) %>Component {
 
   }
   <% } %>
+  <% if(componentCode) { %>
+    <%= indentTextContent(componentCode, 4) %>
+  <% } %>
 }
