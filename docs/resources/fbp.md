@@ -50,11 +50,24 @@ Wiki: [https://en.wikipedia.org/wiki/Dataflow_architecture](https://en.wikipedia
 
 DSL [The Warewolf domain specific language: simple but powerful](https://warewolf.io/blog/warewolf-domain-specific-language/)
 
+[AN INTRODUCTION TO VISUAL PROGRAMMING USING NOFLO](http://rawkes.com/articles/an-introduction-to-noflo-and-flow-based-programming)
+
+ - Why FBP over, you know, normal programming?
+ - So why not FBP? 
+ - FBP's magic bullet — visual programming
+
+
 ## 相关书籍
 
 Matt Carkci: Dataflow and Reactive Programming Systems: A Practical Guide to Developing Dataflow and Reactive Programming Systems
 
 ## 相关项目
+
+### Apache NiFi
+
+https://nifi.apache.org/
+
+> Apache NiFi 是 Apache Software Foundation 的一个软件项目，旨在自动化软件系统之间的数据流。
 
 ### 组件集
 
