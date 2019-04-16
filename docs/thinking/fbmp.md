@@ -49,3 +49,9 @@ public class StateModelABStateMachine implements ABStateMachine {
     }
 }
 ```
+
+
+| 类型 | 链接  | 说明 |
+|-----|-------|------|
+| 文章 | [有限状态机在 JavaScript 中的简单应用](https://ielgnaw.com/article/simple-fsm-in-js) | 简单地介绍了状态的 JavaScript 实现 |
+| JavaScript 库 | [StateMachine: Javascript 有限状态机](https://github.com/ccqgithub/StateMachine) | 引入  JavaScript 库 | 
